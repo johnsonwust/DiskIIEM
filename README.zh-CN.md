@@ -6,6 +6,10 @@ DiskIIEM 是一款面向带 Disk II 控制卡的 Apple II 系统的 5.25 英寸�
 
 本仓库提供 RP2350 固件源码、引脚定义和构建脚本。源码标注的固件版本为 **v1.2.1**。 [版本定义](Branding.h)
 
+<img src="docs/images/diskiiem-controller-card.jpg" width="640" alt="DiskIIEM 原型机、四个按键和 LCD，排线连接到 Disk II 控制卡">
+
+*DiskIIEM 原型机与 Disk II 控制卡。*
+
 ## 规格
 
 | 项目 | 规格 |
@@ -95,6 +99,19 @@ DiskIIEM 是一款面向带 Disk II 控制卡的 Apple II 系统的 5.25 英寸�
 
 出现 `NO SD CARD` 时，可重新插好卡并等设备重试。出现 `exFAT detected!` 时，先备份文件并将卡格式化为 FAT32。遇到可复现的读写故障，可用 **Config → Save debug log** 导出 `WLOGnn.TXT`（信号电平和最近的写盘事件）和 `WTRKnn.BIN`（当前磁道数据）。 [菜单参考](UI_MENU.txt)
 
+## 实物照片与 LCD 界面
+
+| 连接 Apple II | 机身文件浏览界面 |
+| --- | --- |
+| ![DiskIIEM 连接到安装在 Apple II 主板上的 Disk II 控制卡](docs/images/diskiiem-apple-ii-setup.jpg) | ![DiskIIEM 的 LCD 显示磁盘镜像列表，下方是四个操作按键](docs/images/diskiiem-lcd-files.jpg) |
+
+<details>
+<summary>展开固件 v1.1 的 LCD 菜单预览</summary>
+
+![固件 v1.1 的界面预览，展示开机、选择镜像、磁盘与 SD 卡信息、设置及提示](docs/images/diskiiem-menu-preview-v1-1.png)
+
+</details>
+
 ## 构建和烧录
 
 项目使用 CMake、Raspberry Pi Pico SDK **2.2.0** 和 `arm-none-eabi-gcc`。Windows 下还需安装 Git 和带 make 工具的 MinGW-w64。进入仓库根目录后，在 PowerShell 中运行：
@@ -122,4 +139,4 @@ DiskIIEM 是一款面向带 Disk II 控制卡的 Apple II 系统的 5.25 英寸�
 - **Apple II 实机**。开发记录确认过原型机在 DOS 3.3 上的 `CATALOG`、`SAVE` 和 `LOAD` 操作。
 - **主机仿真**。历史检查覆盖扇区读写、整轨格式化、WOZ 解析与回放、FAT32 操作及菜单。物理 PIO 波形和不同 SD 卡、控制卡组合仍需实机覆盖。
 
-实物照片和界面截图将在后续补充。 [验证记录](WOZ_DESIGN.md)
+[验证记录](WOZ_DESIGN.md)

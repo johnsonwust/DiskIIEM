@@ -6,6 +6,10 @@ DiskIIEM is a 5.25-inch floppy drive emulator for Apple II systems with a Disk I
 
 This repository contains the RP2350 firmware, pin assignments, and build scripts. The firmware version declared in the source is **v1.2.1**. [Version definition](Branding.h)
 
+<img src="docs/images/diskiiem-controller-card.jpg" width="640" alt="DiskIIEM prototype with its four buttons and LCD, connected by ribbon cable to a Disk II controller card">
+
+*DiskIIEM prototype and Disk II controller card.*
+
 ## Specifications
 
 | Item | Specification |
@@ -95,6 +99,19 @@ Settings and the last mounted image are stored in `config.cfg` at the root of ea
 
 If you see `NO SD CARD`, reseat the card and allow the device to retry. If you see `exFAT detected!`, copy your files off the card and format it as FAT32 before using it. For a reproducible read or write issue, **Config → Save debug log** creates `WLOGnn.TXT` (signal levels and recent write events) and `WTRKnn.BIN` (current track data). [Menu reference](UI_MENU.txt)
 
+## Hardware photos and LCD preview
+
+| Connected to Apple II | On-device file browser |
+| --- | --- |
+| ![DiskIIEM connected to a Disk II controller installed in an Apple II motherboard](docs/images/diskiiem-apple-ii-setup.jpg) | ![DiskIIEM LCD showing the disk image list above the four buttons](docs/images/diskiiem-lcd-files.jpg) |
+
+<details>
+<summary>LCD menu preview from firmware v1.1</summary>
+
+![Firmware v1.1 menu preview showing startup, image selection, disk and card information, settings, and SD card messages](docs/images/diskiiem-menu-preview-v1-1.png)
+
+</details>
+
 ## Build and flash
 
 The project uses CMake with Raspberry Pi Pico SDK **2.2.0** and the `arm-none-eabi-gcc` toolchain. On Windows, install CMake, Git, and MinGW-w64 with its make tool, then run this from the repository root in PowerShell:
@@ -122,4 +139,4 @@ The script fetches the Pico SDK and picotool 2.2.0 if they are missing, then pro
 - **Apple II hardware** — Development records confirm DOS 3.3 `CATALOG`, `SAVE`, and `LOAD` on a prototype.
 - **Host simulation** — Historical checks cover sector read and write, full-track formatting, WOZ parsing and playback, FAT32 operations, and menu behavior. Physical PIO waveforms and additional SD card and controller combinations require hardware verification.
 
-Hardware photos and interface screenshots will be added later. [Verification records](WOZ_DESIGN.md)
+[Verification records](WOZ_DESIGN.md)
