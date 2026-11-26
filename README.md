@@ -1,28 +1,30 @@
-# DiskIIEM · Pico 2 固件
+# DiskIIEM · Pico 2 Firmware
 
-**固件源码与构建脚本** · Raspberry Pi Pico 2（RP2350）
+[简体中文](README.zh-CN.md)
 
-DiskIIEM 是一款基于 Raspberry Pi Pico 2（RP2350）的 Apple II 5.25 英寸软驱仿真器。它接入 Disk II 控制卡的驱动器接口，把 SD 卡上的磁盘镜像当作软盘使用。通过机身上的 LCD 和四个按键，可以浏览目录、装载镜像和切换磁盘。
+**Firmware source and build scripts** for Raspberry Pi Pico 2 (RP2350).
 
-## 主要功能
+DiskIIEM emulates a 5.25-inch floppy drive for the Apple II. It connects to the drive port on a Disk II controller card and uses disk images stored on an SD card. Use the built-in LCD and four buttons to browse folders, mount images, and swap disks.
 
-- 支持 `.dsk`、`.nic` 和 `.woz`（WOZ 1 / WOZ 2）镜像。
-- 支持磁盘读写，写入内容会保存回 SD 卡上的镜像文件。WOZ 的 FLUX 磁道支持读取。
-- 支持 FAT32 SD 卡、子目录和长文件名，可在开机时恢复上次加载的镜像。
-- 可从机身菜单查看镜像信息和设置写保护。
+## Features
 
-## 控制方案
+- Supports `.dsk`, `.nic`, and `.woz` (WOZ 1 and WOZ 2) disk images.
+- Reads and writes disk images, saving changes back to the SD card. FLUX tracks in WOZ images are read-only.
+- Supports FAT32 SD cards, subdirectories, and long filenames. It can remount the last-used image at startup.
+- Shows disk image details and lets you set write protection from the device menu.
 
-固件利用 RP2350 的双核与 PIO、DMA。一个核心处理 Disk II 的读写信号和步进，另一个处理 LCD 菜单和菜单发起的 SD 卡操作。硬件采用 Pico 2、SD 卡和 128 × 64 单色 LCD，便于控制整机成本。
+## Hardware and firmware
 
-## 快速开始
+The firmware uses both RP2350 cores, programmable I/O (PIO), and DMA. One core handles Disk II read, write, and step signals. The other runs the LCD menus and handles SD card operations initiated from those menus. The hardware uses a Pico 2, an SD card, and a 128 × 64 monochrome LCD to keep costs down.
 
-1. 将磁盘镜像复制到 FAT32 格式的 SD 卡。
-2. 将设备接到 Apple II 的 Disk II 控制卡，插入 SD 卡并开机。
-3. 用机身按键选择镜像，然后在 Apple II 上按平常使用软盘的方式访问。
+## Quick start
 
-固件采用 Raspberry Pi Pico SDK 2.2.0 构建。Windows 下可运行项目里的 `build.ps1` 生成 `DiskIIEM.uf2`，再通过 Pico 2 的 BOOTSEL 模式写入。引脚定义和菜单操作见 [PinConfig.h](PinConfig.h) 与 [UI_MENU.txt](UI_MENU.txt)。
+1. Copy your disk images to a FAT32-formatted SD card.
+2. With the Apple II powered off, connect DiskIIEM to the Disk II controller card and insert the SD card. Then turn on the Apple II.
+3. Select an image with the device buttons and use it on the Apple II as you would a floppy disk.
 
-## 当前状态
+The firmware builds with Raspberry Pi Pico SDK 2.2.0. On Windows, run `build.ps1` to generate `DiskIIEM.uf2`, then copy it to the Pico 2 drive in BOOTSEL mode. See [PinConfig.h](PinConfig.h) for pin assignments and [UI_MENU.txt](UI_MENU.txt) for menu controls.
 
-原型已完成基础测试，开发记录确认了 Apple II 实机上的 DOS 3.3 目录读取、文件保存和重新加载。实物照片和界面截图将在后续补充。
+## Project status
+
+Basic tests on an Apple II running DOS 3.3 verified listing the disk catalog, saving a file, and loading it again. Hardware photos and screenshots will be added later.
