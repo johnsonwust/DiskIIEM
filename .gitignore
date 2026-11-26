@@ -1,0 +1,25 @@
+# Build outputs (build.bat / build.ps1)
+build/
+build-*/
+
+# Pico SDK and host tools: fetched/built by build.ps1, not part of the project
+pico-sdk/
+.tools/
+
+# Generated / editor caches
+.cache/
+compile_commands.json
+
+# Known-good V1 backup: its sources are the first commit (tag v1-baseline)
+V1-backup/
+
+!.vscode/*
+
+# Python caches
+__pycache__/
+
+# Host test outputs (tools/hosttest)
+tools/hosttest/out/
+
+# Archives
+*.zip
