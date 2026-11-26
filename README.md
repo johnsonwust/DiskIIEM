@@ -1,4 +1,6 @@
-# DiskIIEM
+# DiskIIEM · Pico 2 固件
+
+**固件源码与构建脚本** · Raspberry Pi Pico 2（RP2350）
 
 DiskIIEM 是一款基于 Raspberry Pi Pico 2（RP2350）的 Apple II 5.25 英寸软驱仿真器。它接入 Disk II 控制卡的驱动器接口，把 SD 卡上的磁盘镜像当作软盘使用。通过机身上的 LCD 和四个按键，可以浏览目录、装载镜像和切换磁盘。
 
